@@ -457,7 +457,8 @@ namespace Trippit.Controls
             this.InitializeComponent();
 
             //Default location of Helsinki's Rautatientori
-            DigiTransitMapControl.Center = new Geopoint(new BasicGeoposition { Altitude = 0.0, Latitude = 60.1709, Longitude = 24.9413 });
+            DigiTransitMapControl.Center = new Geopoint(new BasicGeoposition 
+            { Altitude = 0.0, Latitude = 60.1709, Longitude = 24.9413 });
 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -471,26 +472,31 @@ namespace Trippit.Controls
 
             _geolocationService = SimpleIoc.Default.GetInstance<IGeolocationService>();
 
+            // MapApiToken
             MapServiceToken = MapHelper.MapApiToken.Value;
 
             if (_themeIconSource == null)
             {
-                _themeIconSource = CircleMapIconSource.GenerateIconAsync(CircleMapIconSource.IconType.ThemeColor);
+                _themeIconSource = CircleMapIconSource.GenerateIconAsync(
+                    CircleMapIconSource.IconType.ThemeColor);
             }
 
             if (_greyIconSource == null)
             {
-                _greyIconSource = CircleMapIconSource.GenerateIconAsync(CircleMapIconSource.IconType.GreyedOut);
+                _greyIconSource = CircleMapIconSource.GenerateIconAsync(
+                    CircleMapIconSource.IconType.GreyedOut);
             }
 
             if (_themeIconPointerOverSource == null)
             {
-                _themeIconPointerOverSource = CircleMapIconSource.GenerateIconAsync(CircleMapIconSource.IconType.ThemeColorPointerOver);
+                _themeIconPointerOverSource = CircleMapIconSource.GenerateIconAsync(
+                    CircleMapIconSource.IconType.ThemeColorPointerOver);
             }
 
             if (_themeIconSelectedSource == null)
             {
-                _themeIconSelectedSource = CircleMapIconSource.GenerateIconAsync(CircleMapIconSource.IconType.ThemeColorSelected);
+                _themeIconSelectedSource = CircleMapIconSource.GenerateIconAsync(
+                    CircleMapIconSource.IconType.ThemeColorSelected);
             }
         }        
 
@@ -526,7 +532,8 @@ namespace Trippit.Controls
             MapCenterChanged?.Invoke(sender, args);
         }
 
-        private void DigiTransitMapControl_MapRightTapped(MapControl sender, MapRightTappedEventArgs args)
+        private void DigiTransitMapControl_MapRightTapped(MapControl sender, 
+            MapRightTappedEventArgs args)
         {
             MapRightTapped?.Invoke(sender, args);
         }
@@ -537,12 +544,14 @@ namespace Trippit.Controls
             MapTapped?.Invoke(sender, args);
         }
 
-        private void DigiTransitMapControl_MapElementClick(MapControl sender, MapElementClickEventArgs args)
+        private void DigiTransitMapControl_MapElementClick(MapControl sender, 
+            MapElementClickEventArgs args)
         {
             MapElementClicked?.Invoke(sender, args);
         }
         
-        private void DigiTransitMapControl_MapElementPointerEntered(MapControl sender, MapElementPointerEnteredEventArgs args)
+        private void DigiTransitMapControl_MapElementPointerEntered(MapControl sender, 
+            MapElementPointerEnteredEventArgs args)
         {
             MapIcon icon = args.MapElement as MapIcon;
             if (icon == null)
@@ -552,12 +561,14 @@ namespace Trippit.Controls
 
             if ((MapIconState)icon.GetValue(MapIconStateProperty) == MapIconState.None)
             {
-                // The MapIconChanged callback in the Attached Property handles Image changing on State changes. See MapElementExtensions.cs.
+                // The MapIconChanged callback in the Attached Property handles
+                // Image changing on State changes. See MapElementExtensions.cs.
                 icon.SetValue(MapIconStateProperty, MapIconState.PointerOver);
             }
         }
 
-        private void DigiTransitMapControl_MapElementPointerExited(MapControl sender, MapElementPointerExitedEventArgs args)
+        private void DigiTransitMapControl_MapElementPointerExited(MapControl sender, 
+            MapElementPointerExitedEventArgs args)
         {
             MapIcon icon = args.MapElement as MapIcon;
             if (icon == null)
@@ -567,7 +578,8 @@ namespace Trippit.Controls
 
             if ((MapIconState)icon.GetValue(MapIconStateProperty) == MapIconState.PointerOver)
             {
-                // The MapIconChanged callback in the Attached Property handles Image changing on State changes. See MapElementExtensions.cs.
+                // The MapIconChanged callback in the Attached Property handles
+                // Image changing on State changes. See MapElementExtensions.cs.
                 icon.SetValue(MapIconStateProperty, MapIconState.None);
             }
         }
@@ -642,7 +654,9 @@ namespace Trippit.Controls
 
         private void SetMapIcons(IEnumerable<MapIcon> icons)
         {
-            List<MapIcon> oldList = DigiTransitMapControl.MapElements.OfType<MapIcon>().ToList();
+            List<MapIcon> oldList
+                = DigiTransitMapControl.MapElements.OfType<MapIcon>().ToList();
+
             if (icons == null)
             {
                 if(oldList != null)
@@ -735,7 +749,9 @@ namespace Trippit.Controls
                 if(this.SelfMarker.Visibility == Visibility.Collapsed)
                 {
                     this.SelfMarker.Visibility = Visibility.Visible;
-                    MapControl.SetNormalizedAnchorPoint(this.SelfMarker, new Point(MapSelfMarker.RenderTransformOriginX, MapSelfMarker.RenderTransformOriginY));
+                    MapControl.SetNormalizedAnchorPoint(this.SelfMarker, 
+                        new Point(MapSelfMarker.RenderTransformOriginX, 
+                        MapSelfMarker.RenderTransformOriginY));
                 }
                 MapControl.SetLocation(SelfMarker, args.Position.Coordinate.Point);
             }
@@ -751,30 +767,37 @@ namespace Trippit.Controls
             }
         }
         
-        public async Task TrySetViewBoundsAsync(GeoboundingBox bounds, Thickness? margin, MapAnimationKind animation, bool retryOnFailure = false)
+        public async Task TrySetViewBoundsAsync(GeoboundingBox bounds, Thickness? margin, 
+            MapAnimationKind animation, bool retryOnFailure = false)
         {
             if(DigiTransitMapControl == null)
             {
                 return;
             }
 
-            // We're checking for the MapStyle type as a proxy for "are we running on Creators or higher?".
+            // We're checking for the MapStyle type as a proxy for "are we running
+            // on Creators or higher?".
             // We don't need to run the following code if we are.
             if (margin != null
                 && !ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.Maps.MapStyle")
                 && DeviceTypeHelper.GetDeviceFormFactorType() != DeviceFormFactorType.Phone)
             {
-                //Margins are a little smaller on desktop for some reason. investigate this a little further, may just be a DPI thing?
+                //Margins are a little smaller on desktop for some reason. investigate
+                //this a little further, may just be a DPI thing?
                 const int desktopPlusCoeff = 40;
-                margin = new Thickness(margin.Value.Left + desktopPlusCoeff, margin.Value.Top + desktopPlusCoeff,
-                    margin.Value.Right + desktopPlusCoeff, margin.Value.Bottom + desktopPlusCoeff);
+                margin = new Thickness(margin.Value.Left + desktopPlusCoeff, margin.Value.Top
+                    + desktopPlusCoeff,
+                    margin.Value.Right + desktopPlusCoeff, margin.Value.Bottom 
+                    + desktopPlusCoeff);
             }
 
             //If map movement fails, keep retrying until we get it right
             bool moved = false;
             do
             {
-                moved = await DigiTransitMapControl.TrySetViewBoundsAsync(bounds, margin, animation);                
+                moved = await DigiTransitMapControl.TrySetViewBoundsAsync(
+                    bounds, margin, animation);   
+                
                 if (moved)
                 {
                     break;
@@ -786,7 +809,8 @@ namespace Trippit.Controls
             } while (!moved && retryOnFailure);
         }
 
-        public async Task TrySetViewAsync(Geopoint point, double? zoomLevel, MapAnimationKind animation)
+        public async Task TrySetViewAsync(Geopoint point, double? zoomLevel, 
+            MapAnimationKind animation)
         {
             if (zoomLevel <= DigiTransitMapControl.ZoomLevel)
             {
@@ -897,7 +921,8 @@ namespace Trippit.Controls
         public GeoboundingBox GetMapViewBoundingBox()
         {
             //Only available in AU and later
-            if (ApiInformation.IsMethodPresent("Windows.UI.Xaml.Controls.Maps.MapControl", "GetVisibleRegion"))
+            if (ApiInformation.IsMethodPresent("Windows.UI.Xaml.Controls.Maps.MapControl",
+                "GetVisibleRegion"))
             {
                 Geopath geopath = DigiTransitMapControl.GetVisibleRegion(MapVisibleRegionKind.Full);
                 if (geopath == null)
@@ -945,13 +970,19 @@ namespace Trippit.Controls
 
             double degreePerPixel = (156543.04 * Math.Cos(DigiTransitMapControl.Center.Position.Latitude * Math.PI / 180)) / (111325 * Math.Pow(2, DigiTransitMapControl.ZoomLevel));
 
-            double mHalfWidthInDegrees = DigiTransitMapControl.ActualWidth * degreePerPixel / 0.9;
-            double mHalfHeightInDegrees = DigiTransitMapControl.ActualHeight * degreePerPixel / 1.7;
+            double mHalfWidthInDegrees = DigiTransitMapControl.ActualWidth 
+                * degreePerPixel / 0.9;
+            double mHalfHeightInDegrees = DigiTransitMapControl.ActualHeight
+                * degreePerPixel / 1.7;
 
-            double mNorth = DigiTransitMapControl.Center.Position.Latitude + mHalfHeightInDegrees;
-            double mWest = DigiTransitMapControl.Center.Position.Longitude - mHalfWidthInDegrees;
-            double mSouth = DigiTransitMapControl.Center.Position.Latitude - mHalfHeightInDegrees;
-            double mEast = DigiTransitMapControl.Center.Position.Longitude + mHalfWidthInDegrees;
+            double mNorth = DigiTransitMapControl.Center.Position.Latitude 
+                + mHalfHeightInDegrees;
+            double mWest = DigiTransitMapControl.Center.Position.Longitude 
+                - mHalfWidthInDegrees;
+            double mSouth = DigiTransitMapControl.Center.Position.Latitude 
+                - mHalfHeightInDegrees;
+            double mEast = DigiTransitMapControl.Center.Position.Longitude
+                + mHalfWidthInDegrees;
 
             GeoboundingBox mBounds = new GeoboundingBox(
                 new BasicGeoposition()
@@ -968,8 +999,8 @@ namespace Trippit.Controls
             return mBounds;
         }
 
-        // TODO: If we're setting an icon's state to PointerOver, maybe make sure it's the only icon in a PointerOver state?
-        // Hope that's not too slow.
+        // TODO: If we're setting an icon's state to PointerOver, maybe make sure
+        // it's the only icon in a PointerOver state? I hope that's not too slow.
         // Maybe keep a list of all icons currently in a PointerOver state...
         public void SetIconState(Guid iconId, MapIconState iconState)
         {
@@ -982,7 +1013,8 @@ namespace Trippit.Controls
                 return;
             }
 
-            // The MapIconChanged callback in the Attached Property handles Image changing on State changes. See MapElementExtensions.cs.
+            // The MapIconChanged callback in the Attached Property handles
+            // Image changing on State changes. See MapElementExtensions.cs.
             matchingIcon.SetValue(MapIconStateProperty, iconState);
 
 
@@ -991,8 +1023,9 @@ namespace Trippit.Controls
             {                
                 foreach (MapIcon activeIcon in DigiTransitMapControl.MapElements.
                     OfType<MapIcon>()
-                    .Where(x => (MapIconState)x.GetValue(MapIconStateProperty) != MapIconState.None
-                                && (Guid)x.GetValue(PoiIdProperty) != iconId))
+                    .Where(x => 
+                    (MapIconState)x.GetValue(MapIconStateProperty) != MapIconState.None
+                     && (Guid)x.GetValue(PoiIdProperty) != iconId))
                 {
                     activeIcon.SetValue(MapIconStateProperty, MapIconState.None);
                 }

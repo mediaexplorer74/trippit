@@ -40,7 +40,13 @@ namespace Trippit.Backend
     {
         readonly HttpClient _client;
 
-        public HttpRequestHeaderCollection DefaultHeaders => _client.DefaultRequestHeaders;
+        public HttpRequestHeaderCollection DefaultHeaders
+        {
+            get
+            {
+                return _client.DefaultRequestHeaders;
+            }
+        }
 
         public NetworkClient()
         {

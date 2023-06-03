@@ -9,7 +9,8 @@ namespace Trippit.Helpers
         public static Lazy<string> MapApiToken = new Lazy<string>(() => 
             {
                 StorageFile file = ExtensionMethods.TaskExtensions.RunSync(
-                () => StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///maps-api-key.txt"))
+                () => StorageFile.GetFileFromApplicationUriAsync(
+                    new Uri("ms-appx:///maps-api-key.txt"))
                 .AsTask());
 
                 return ExtensionMethods.TaskExtensions.RunSync(

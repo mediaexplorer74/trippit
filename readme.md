@@ -1,12 +1,12 @@
 # Trippit
 
-The fork of great UWP app named Trippit  for my own UI learning/research and cross-platform "dreams" :)
+The fork of great UWP app named Trippit for my own UI learning/research and cross-platform "dreams" :)
 
 ## Screenshots
 ![](Images/shot1.png)
 
 ## My "1,5 cents" :)
-- Win. os. build -> 19041; Min. Win. os build -> 15032
+- Win. os. build -> 19041; Min. Win. os build -> 15063
 - UWP Desktop extension added
 - Ru localization started (30 % ready))
 
@@ -19,7 +19,7 @@ A UWP HSL Reittiopas app for the greater Helsinki region. Runs on Windows 10 for
 
 ## Building
 Requirements
-* [Resw Code File Generator](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) (only works with VS2015 at the moment)
+* [Resw Code File Generator](https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ResWFileCodeGenerator) 
 
 ## Feature Epics
 
