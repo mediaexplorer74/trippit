@@ -84,7 +84,7 @@ Contrary to the documentation, it's not a string that gets coerced to a masked e
 ## References
 - https://github.com/pingzing/trippit Trippit, original app
 
-- https://github.com/pingzing Neil McAlister, Trippit developer / designer 
+- https://github.com/pingzing Neil McAlister, Great c# developer / designer who made cool Trippit app
 
 ## .. 
 As is. No support. RnD only.
