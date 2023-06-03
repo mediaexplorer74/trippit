@@ -1,6 +1,20 @@
 # Trippit
-[![Build status](https://ci.appveyor.com/api/projects/status/lkk8wtd9gochr8fs/branch/master?svg=true)](https://ci.appveyor.com/project/pingzing/digi-transit-10/branch/master)
 
+The fork of great UWP app named Trippit  for my own UI learning/research and cross-platform "dreams" :)
+
+## Screenshots
+![](Screenshots/shot1.png)
+
+## My "1,5 cents" :)
+- Win. os. build -> 19041; Min. Win. os build -> 15032
+- UWP Desktop extension added
+- Ru localization started (30 % ready))
+
+The original worlds of author: 
+
+"
+
+## About 
 A UWP HSL Reittiopas app for the greater Helsinki region. Runs on Windows 10 for Desktops and Mobile.
 
 ## Building
@@ -64,3 +78,17 @@ Contrary to the documentation, it's not a string that gets coerced to a masked e
  * `AutoSuggestBox` causes a "Catastrophic failure" exception with no further information if its `DisplayMemberPath` is set to anything, and the AutoSuggetBox is using an `ItemTemplate`. Further information found on [TechNet](https://social.msdn.microsoft.com/Forums/sqlserver/en-US/194e87b9-312e-4282-ac5d-a240a917cbaa/uwp-setting-autosuggestbox-items-results-in-catastrophic-failure-because-of-itemtemplate?forum=wpdevelop).
  * When using localized resources in a separate DLL, the project's `.appxmanifest` needs to be edited manually to declare supported languages. The magic `x-generate` token doesn't look in other assemblies to determine what languages the app supports.
  * When using localized resource sin a separate DLL, if you want to use a localized DisplayName or Description or whatever in the `.appxmanifest`, you give to give it the whole path, like so: `ms-resource:DigiTransit10.Localization/AppResources/AppName`.
+
+"
+
+## References
+- https://github.com/pingzing/trippit Trippit, original app
+
+- https://github.com/pingzing Neil McAlister, Trippit developer / designer 
+
+## .. 
+As is. No support. RnD only.
+
+## .
+[m][e] 2023
+
