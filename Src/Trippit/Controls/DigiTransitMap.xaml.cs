@@ -445,7 +445,8 @@ namespace Trippit.Controls
 
         //Updates the mapcontrol via x:bind binding
         public static readonly DependencyProperty ZoomLevelProperty =
-            DependencyProperty.Register("ZoomLevel", typeof(double), typeof(DigiTransitMap), new PropertyMetadata(10.0));
+            DependencyProperty.Register("ZoomLevel", typeof(double), typeof(DigiTransitMap), 
+                new PropertyMetadata(10.0));
         public double ZoomLevel
         {
             get { return (double)GetValue(ZoomLevelProperty); }

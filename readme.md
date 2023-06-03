@@ -4,6 +4,7 @@ The fork of great UWP app named Trippit for my own UI learning/research and cros
 
 ## Screenshots
 ![](Images/shot1.png)
+![](Images/shot2.png)
 
 ## My "1,5 cents" :)
 - Win. os. build -> 19041; Min. Win. os build -> 15063
