@@ -1,10 +1,14 @@
-# Trippit
+# Trippit v1.2.7
 
 The fork of great UWP app named Trippit for my own UI learning/research and cross-platform "dreams" :)
 
 ## Screenshots
 ![](Images/shot1.png)
 ![](Images/shot2.png)
+![](Images/shot3.png)
+![](Images/shot4.png)
+![](Images/shot5.png)
+![](Images/shot6.png)
 
 ## My "1,5 cents" :)
 - Win. os. build -> 19041; Min. Win. os build -> 15063
